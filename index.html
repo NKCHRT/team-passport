@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#131210">
+<meta name="robots" content="noindex,nofollow">
+<title>Паспорт команды — ПГФВ</title>
+<script src="js/theme-init.js"></script>
+<link rel="icon" href="assets/brand/fed-mark.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/ui-fonts.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/shell.css">
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__mark" aria-hidden="true">
+        <img src="assets/brand/fed-mark.png" alt="">
+      </div>
+      <div class="brand__text">
+        <div class="brand__name">Паспорт команды</div>
+      </div>
+      <button class="icon-btn brand__collapse" id="btnSidebarToggle" type="button" title="Свернуть панель" aria-label="Свернуть панель" aria-expanded="true">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14 7-5 5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="club-summary">
+      <div class="club-summary__crest" id="clubSummaryCrest">ТГ</div>
+      <div class="club-summary__copy">
+        <strong id="clubSummaryName">ДЕМО-КОМАНДА</strong>
+        <span id="clubSummarySeason">Сезон 25/26</span>
+      </div>
+    </div>
+
+    <div class="sidebar__scroll">
+      <section class="panel">
+        <div class="panel__head">
+          <h2>Команда</h2>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Название команды</span>
+          <input id="teamName" type="text" maxlength="30" autocomplete="off" spellcheck="false" placeholder="ДЕМО-КОМАНДА">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Сезон</span>
+          <input id="teamSeason" type="text" maxlength="18" autocomplete="off" spellcheck="false" placeholder="СЕЗОН 25/26">
+        </label>
+
+        <div class="field">
+          <span class="field__label">Акцентный цвет</span>
+          <div class="swatches" id="swatches">
+            <button class="swatch" type="button" data-color="#D9251C" style="--sw:#D9251C" aria-label="Красный ПГФВ"></button>
+            <button class="swatch" type="button" data-color="#05488F" style="--sw:#05488F" aria-label="Синий ПГФВ"></button>
+            <button class="swatch" type="button" data-color="#0A1F3A" style="--sw:#0A1F3A" aria-label="Тёмно-синий"></button>
+            <button class="swatch" type="button" data-color="#2E7BC4" style="--sw:#2E7BC4" aria-label="Голубой"></button>
+            <button class="swatch" type="button" data-color="#0F172A" style="--sw:#0F172A" aria-label="Графит"></button>
+            <label class="swatch swatch--custom" title="Свой цвет">
+              <input type="color" id="accentCustom" value="#D9251C" aria-label="Свой акцентный цвет">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </label>
+          </div>
+        </div>
+
+        <div class="logo-field">
+          <button class="logo-thumb" type="button" id="teamLogoThumb" title="Загрузить логотип команды">
+            <img id="teamLogoPreview" alt="" hidden src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+            <span class="logo-thumb__plus" id="teamLogoPlus">+</span>
+          </button>
+          <div class="logo-field__text">
+            <span class="field__label">Логотип команды</span>
+            <span class="logo-field__hint">PNG или JPG, лучше с прозрачным фоном</span>
+            <button class="link-btn" type="button" id="teamLogoRemove" hidden>Убрать логотип</button>
+          </div>
+        </div>
+
+        <button class="btn btn--ghost btn--wide site-import-btn" id="btnSiteImport" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.4-8A5.5 5.5 0 0 1 17.2 8.6 3.8 3.8 0 0 1 18 16h-1M12 11v8m0 0-3-3m3 3 3-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Импорт с сайта ПГФВ
+        </button>
+      </section>
+
+      <section class="roster">
+        <div class="panel__head panel__head--roster">
+          <h2>Состав <span class="count" id="rosterCount">0</span></h2>
+          <div class="head-actions">
+            <button class="icon-btn" id="btnSort" type="button" title="Сортировать по номеру" aria-label="Сортировать по номеру">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn btn--small btn--accent" id="btnAdd" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Игрок
+            </button>
+          </div>
+        </div>
+        <label class="roster__search">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input id="rosterSearch" type="search" autocomplete="off" placeholder="Поиск по имени или номеру">
+        </label>
+        <div class="roster__list" id="rosterList"></div>
+        <button class="btn btn--ghost roster__add" id="btnAddBottom" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Добавить игрока
+        </button>
+        <p class="roster__limit" id="rosterLimit">До 60 игроков · по 18 на лист</p>
+      </section>
+    </div>
+
+  </aside>
+
+  <main class="workspace">
+    <header class="toolbar">
+      <div class="toolbar__title">
+        <h1 id="toolbarTeamName">ДЕМО-КОМАНДА</h1>
+        <span class="pill">A4 · альбомная</span>
+        <span class="pill pill--count" id="toolbarCount">0 игроков</span>
+      </div>
+      <div class="toolbar__actions">
+        <div class="menu-wrap">
+          <button class="btn btn--ghost" id="btnProject" type="button" aria-haspopup="menu" aria-expanded="false">
+            Проект
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="menu" id="projectMenu" role="menu">
+            <button class="menu__item" type="button" data-action="site" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Загрузить с сайта ПГФВ
+            </button>
+            <div class="menu__sep"></div>
+            <button class="menu__item" type="button" data-action="save-json" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Скачать проект (.json)
+            </button>
+            <button class="menu__item" type="button" data-action="load-json" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21V9m0 0-4 4m4-4 4 4M5 3h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Загрузить проект (.json)
+            </button>
+            <div class="menu__sep"></div>
+            <div class="menu__label">Тема</div>
+            <button class="menu__item menu__item--check" type="button" data-theme-set="dark" role="menuitemradio" aria-checked="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              Тёмная
+              <span class="menu__check" aria-hidden="true">✓</span>
+            </button>
+            <button class="menu__item menu__item--check" type="button" data-theme-set="light" role="menuitemradio" aria-checked="false">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              Светлая
+              <span class="menu__check" aria-hidden="true">✓</span>
+            </button>
+            <button class="menu__item menu__item--check" type="button" data-theme-set="system" role="menuitemradio" aria-checked="false">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              Системная
+              <span class="menu__check" aria-hidden="true">✓</span>
+            </button>
+            <div class="menu__sep"></div>
+            <button class="menu__item" type="button" data-action="demo" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Вернуть демо-состав
+            </button>
+            <button class="menu__item menu__item--danger" type="button" data-action="clear" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9 7V5h6v2m-8 0 1 13h8l1-13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Очистить состав
+            </button>
+          </div>
+        </div>
+        <div class="print-switch" role="group" aria-label="Режим печати">
+          <span class="print-switch__label">Печать</span>
+          <button type="button" data-print-mode="bw" aria-pressed="true">Ч/Б</button>
+          <button type="button" data-print-mode="color" aria-pressed="false">Цвет</button>
+        </div>
+        <div class="split">
+          <button class="btn btn--primary split__main" id="btnPdf" type="button" aria-label="Распечатать">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="14" width="10" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M17 11h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <span>Распечатать</span>
+          </button>
+          <button class="btn btn--primary split__toggle" id="btnExportMenu" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Другие форматы">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="menu menu--right" id="exportMenu" role="menu">
+            <button class="menu__item" id="btnXlsx" type="button" data-export="xlsx" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 3h10l4 4v14H5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 3v4h4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <span>Excel (.xlsx)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="ui-warning" id="uiWarning" role="status" hidden>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 3.5 19h17L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="16.7" r="1" fill="currentColor"/></svg>
+      <span>Номер и амплуа можно указать в карточках игроков — незаполненные поля скрыты</span>
+    </div>
+
+    <div class="canvas" id="canvas">
+      <div class="sheet-stage" id="sheetStage">
+        <div class="sheets" id="sheets" aria-label="Предпросмотр паспорта команды"></div>
+      </div>
+    </div>
+
+    <div class="page-strip" id="pageStrip" aria-label="Страницы паспорта" hidden></div>
+
+    <div class="card-toolbar" id="cardToolbar" hidden role="toolbar" aria-label="Действия с игроком">
+      <button type="button" data-card-act="edit" title="Редактировать">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m13.5 7.5 3 3" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <button type="button" data-card-act="duplicate" title="Дублировать">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <button type="button" data-card-act="delete" title="Удалить" class="is-danger">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2m-8 0 1 13h8l1-13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <footer class="statusbar">
+      <div class="statusbar__left">
+        <span class="save-dot" id="saveDot"></span>
+        <span id="saveLabel">Сохранено локально</span>
+        <span class="statusbar__sep"></span>
+        <span id="statusPlayers">18 игроков</span>
+      </div>
+      <div class="statusbar__center">
+        <button class="statusbar__btn" id="pagePrev" type="button" aria-label="Предыдущая страница">←</button>
+        <span class="statusbar__page" id="pageLabel">1 / 1</span>
+        <button class="statusbar__btn" id="pageNext" type="button" aria-label="Следующая страница">→</button>
+      </div>
+      <div class="statusbar__right">
+        <button class="statusbar__btn" id="btnCommand" type="button" title="Команды (Ctrl+K)">Ctrl K</button>
+        <span class="statusbar__sep"></span>
+        <button class="statusbar__btn" id="zoomOut" type="button" aria-label="Уменьшить">−</button>
+        <span class="statusbar__zoom" id="zoomLabel">74%</span>
+        <button class="statusbar__btn" id="zoomIn" type="button" aria-label="Увеличить">+</button>
+        <button class="statusbar__btn statusbar__fit" id="zoomFit" type="button">По ширине</button>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="command" id="commandPalette" hidden>
+  <div class="command__backdrop" data-command-close></div>
+  <div class="command__panel" role="dialog" aria-modal="true" aria-label="Команды">
+    <div class="command__search">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <input id="commandInput" type="text" autocomplete="off" placeholder="Команда или действие…">
+      <button class="icon-btn" type="button" data-command-close aria-label="Закрыть">×</button>
+    </div>
+    <div class="command__list" id="commandList"></div>
+  </div>
+</div>
+
+<div class="modal" id="playerModal" aria-hidden="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <header class="modal__head">
+      <div>
+        <h2 id="modalTitle">Игрок</h2>
+        <p id="modalSubtitle">Карточка на паспорте команды</p>
+      </div>
+      <button class="icon-btn icon-btn--light" type="button" data-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="modal__body">
+      <div class="photo-editor">
+        <div class="photo-drop" id="photoDrop" tabindex="0" role="button" aria-label="Загрузить фотографию">
+          <img id="photoPreview" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+          <div class="photo-drop__empty" id="photoEmpty">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="9.5" r="1.7" stroke="currentColor" stroke-width="1.5"/><path d="m4 17 5-5 4 4 2.5-2.5L20 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Перетащите фото<br>или нажмите</span>
+          </div>
+          <div class="photo-drop__hint">Замена фото</div>
+        </div>
+        <button class="link-btn" type="button" id="btnRemovePhoto">Удалить фото</button>
+        <p class="photo-editor__note">JPG или PNG, портрет 3:4.<br>Кадрируется по центру.</p>
+      </div>
+
+      <div class="form">
+        <label class="field field--light">
+          <span class="field__label">Фамилия и имя</span>
+          <input id="fName" type="text" maxlength="34" autocomplete="off" placeholder="Иванов Иван">
+        </label>
+
+        <div class="field-row">
+          <label class="field field--light">
+            <span class="field__label">Номер</span>
+            <input id="fNumber" type="text" inputmode="numeric" maxlength="3" autocomplete="off" placeholder="4">
+          </label>
+          <label class="field field--light">
+            <span class="field__label">Дата рождения</span>
+            <input id="fBirth" type="text" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="дд.мм.гггг">
+          </label>
+        </div>
+
+        <label class="field field--light">
+          <span class="field__label">Амплуа</span>
+          <div class="select-wrap">
+            <select id="fPosition">
+              <option value="">Не указано</option>
+              <option value="Либеро">Либеро</option>
+              <option value="Центральный">Центральный</option>
+              <option value="Доигровщик">Доигровщик</option>
+              <option value="Диагональный">Диагональный</option>
+              <option value="Связующий">Связующий</option>
+              <option value="__custom">Другое амплуа…</option>
+            </select>
+            <svg class="select-wrap__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <input id="fPositionCustom" class="custom-position" type="text" maxlength="18" autocomplete="off" placeholder="Например, универсал" hidden>
+        </label>
+
+        <label class="check-field" for="fCaptain">
+          <input id="fCaptain" type="checkbox">
+          <span>Капитан команды</span>
+        </label>
+
+        <p class="form__hint">Дата вводится цифрами — точки подставятся сами. Номер капитана будет подчёркнут на листе.</p>
+      </div>
+    </div>
+
+    <footer class="modal__foot">
+      <button class="btn btn--danger-ghost" type="button" id="btnDelete">Удалить игрока</button>
+      <div class="modal__foot-right">
+        <button class="btn btn--ghost-light" type="button" data-close>Отмена</button>
+        <button class="btn btn--primary" type="button" id="btnSave">Готово</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="importModal" aria-hidden="true">
+  <div class="modal__backdrop" data-close-import></div>
+  <div class="modal__panel modal__panel--import" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+    <header class="modal__head">
+      <div>
+        <h2 id="importTitle">Импорт с сайта ПГФВ</h2>
+        <p>Состав, даты рождения и фотографии со страницы команды</p>
+      </div>
+      <button class="icon-btn icon-btn--light" type="button" data-close-import aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="modal__body import-body">
+      <label class="field field--light">
+        <span class="field__label">Ссылка на страницу команды</span>
+        <input id="importUrl" type="url" placeholder="https://perm-volley.ru/teams/..." autocomplete="off">
+      </label>
+
+      <div class="import-row">
+        <button class="btn btn--primary" type="button" id="btnImportUrl">Загрузить</button>
+        <span class="import-status" id="importStatus" aria-live="polite"></span>
+      </div>
+
+      <div class="import-divider"><span>или</span></div>
+
+      <p class="import-help">Если браузер блокирует запрос из локального файла, сохраните страницу команды через <b>Ctrl+S</b> и выберите HTML-файл.</p>
+      <button class="btn btn--ghost-light import-file-btn" type="button" id="btnImportHtml">Выбрать HTML-файл</button>
+      <input type="file" id="siteHtmlInput" accept=".html,.htm,text/html" hidden>
+
+      <label class="import-check"><input type="checkbox" id="importPhotos" checked> Загружать фотографии</label>
+      <p class="import-note" id="importTransportNote">На сайте ПГФВ данные и фото загружаются напрямую. В локальном режиме фотографии идут через CORS-прокси.</p>
+
+      <details class="import-paste">
+        <summary>Вставить HTML вручную</summary>
+        <textarea id="importHtmlText" rows="5" placeholder="Вставьте сюда HTML страницы команды (Ctrl+U → Ctrl+A → Ctrl+C)"></textarea>
+        <button class="btn btn--ghost-light" type="button" id="btnImportPaste">Разобрать HTML</button>
+      </details>
+    </div>
+
+    <footer class="modal__foot">
+      <span></span>
+      <button class="btn btn--ghost-light" type="button" data-close-import>Закрыть</button>
+    </footer>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<input type="file" id="fileInput" accept="image/*" hidden>
+<input type="file" id="logoInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+<input type="file" id="jsonInput" accept=".json,application/json" hidden>
+
+<script src="js/brand.js"></script>
+<script src="vendor/exceljs.min.js"></script>
+<script src="js/demo-data.js"></script>
+<script src="js/site-import.js"></script>
+<script src="js/exporter.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
